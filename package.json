@@ -1,0 +1,19 @@
+{
+  "name": "lenslight",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "author": "uaerman",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^5.0.1",
+    "express": "^4.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
+}
