@@ -1,19 +1,32 @@
 import { User } from "../models/userModel.js";
 import jwt from 'jsonwebtoken'
 import bcrypt from "bcrypt"
+import { Photo } from "../models/photoModel.js";
 
 
-const createUser = async (req, res) => { 
+const createUser = async (req, res) => {
     try {
-        const user = await User.create(req.body)
-        res.redirect('/users/dashboard')
+      const user = await User.create(req.body);
+      res.status(201).json({ user: user._id });
     } catch (error) {
-        res.status(500).json({
-            succeded: false,
-            error
-        })
+      console.log('ERROR', error);
+  
+      let errors2 = {};
+  
+      if (error.code === 11000) {
+        error.keyPattern.username ? errors2.username = 'The Username is already registered' : null;
+        error.keyPattern.email ? errors2.email = 'The Email is already registered' : null; 
+      }
+  
+      if (error.name === 'ValidationError') {
+        Object.keys(error.errors).forEach((key) => {
+          errors2[key] = error.errors[key].message;
+        });
+      }
+  
+      res.status(400).json(errors2);
     }
-}
+  };
 
 const loginUser = async (req, res) => { 
     try {
@@ -30,7 +43,6 @@ const loginUser = async (req, res) => {
             return;
         }
         if (same) {
-
             const token = createToken(user._id)
             res.cookie("jsonwebtoken", token, {
                 httpOnly:true,
@@ -57,9 +69,11 @@ const createToken = (userId) => {
     })
 }
 
-const getDashboardPage = (req, res) => {
+const getDashboardPage = async (req, res) => {
+    const photos = await Photo.find({user: res.locals.user._id})
     res.render("dashboard", {
-        link: 'dashboard'
+        link: 'dashboard',
+        photos
     })
 }
 

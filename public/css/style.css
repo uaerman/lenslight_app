@@ -432,10 +432,16 @@ button {
     text-align: center;
     color: #fff;
 }
-
-
-
-
+.fa-heart-o {
+    color: red;
+    cursor: pointer;
+  }
+  
+  .fa-heart {
+    color: red;
+    cursor: pointer;
+  }
+  
 /* intro-area css end */
 ul.email li {
      display: inline-block;
