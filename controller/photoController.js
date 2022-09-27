@@ -52,8 +52,13 @@ const getAllPhotos = async (req, res) => {
 const getAPhoto = async (req, res) => {
   try {
     const photo = await Photo.findById({ _id: req.params.id }).populate('user')
+    let isOwner = false
+    if(res.locals.user) {
+      isOwner = photo.user.equals(res.locals.user._id)
+    }
     res.status(200).render('photo', {
       photo,
+      isOwner,
       link: 'photos',
     });
   } catch (error) {
@@ -94,14 +99,11 @@ const updatePhoto = async (req, res) => {
       );
       photo.url = result.secure_url
       photo.image_id = result.public_id
-      photo.save()
       fs.unlinkSync(req.files.image.tempFilePath)
     }
-    else {
       photo.name = req.body.name
       photo.description = req.body.description
       photo.save()
-    }
     
     res.status(200).redirect(`/photos/${req.params.id}`)
   } catch (error) {
