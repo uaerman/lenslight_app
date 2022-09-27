@@ -13,7 +13,10 @@
                    <ul>
                       <li><a class="<%= link === 'home' && 'active' %>" href="/">Home</a></li>
                       <li><a class="<%= link === 'about' && 'active' %>" href="/about">About</a></li>
-                      <li><a class="<%= link === 'photos' && 'active' %>" href="/photos">Gallery</a></li>
+                      <li><a class="<%= link === 'photos' && 'active' %>" href="/photos">Photos</a></li>
+                      <% if (user) { %>
+                        <li><a class="<%= link === 'photos' && 'active' %>" href="/users">Users</a></li>
+                        <% } %>  
                    </ul>
                    <button class="nav-toggler">
                    <span></span>

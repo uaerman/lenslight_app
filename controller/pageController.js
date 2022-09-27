@@ -10,12 +10,6 @@ const getAboutPage = (req, res) => {
     })
 }
 
-const getBlogPage = (req, res) => {
-    res.render("blog", {
-        link: 'blog'
-    })
-}
-
 const getRegisterPage = (req, res) => {
     res.render("register", {
         link: 'register'
@@ -35,4 +29,4 @@ const getLogout = (req, res) => {
     res.redirect('/')
 }
 
-export {getAboutPage, getIndexPage, getBlogPage, getRegisterPage, getLoginPage, getLogout}
+export {getAboutPage, getIndexPage, getRegisterPage, getLoginPage, getLogout}

@@ -14,4 +14,14 @@ router.route('/login')
 router.route('/dashboard')
 .get(authMiddleware.authenticateToken, userController.getDashboardPage)
 
+router.route('/')
+.get(authMiddleware.authenticateToken, userController.getAllUsers)
+
+router.route('/:id')
+.get(authMiddleware.authenticateToken, userController.getAUser)
+
+router.route('/:id/follow').put(authMiddleware.authenticateToken, userController.follow)
+router.route('/:id/unfollow').put(authMiddleware.authenticateToken, userController.unfollow)
+
+
 export default router;
