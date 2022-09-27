@@ -1,4 +1,4 @@
-<img width="150" height="150" align="left" style="float: left; margin: 0 10px 10px 0;" alt="Nobara" src="https://cdn.uaerman.dev/images/profile.jpeg>
+<img width="150" height="150" align="left" style="float: left; margin: 0 10px 10px 0;" alt="Nobara" src="https://cdn.uaerman.dev/images/profile.jpeg">
 
 # iXargon
 
@@ -47,6 +47,11 @@ Before start the project change example.env file to .env and fill up to fallowin
 PORT=Your server port
 DB_URI=Mongoose uri for database connection
 JWT_SECRET=Json Web Token secret for cookies
+CLOUD_NAME=Cloudinary Database Name
+CLOUD_API_KEY=Cloudinary Api Key
+CLOUD_API_SECRET=Cloudinary Api Secret
+NODE_MAIL=Email for nodemailer
+NODE_PASS=Email Password
 ```
 
 ##### Install modules
